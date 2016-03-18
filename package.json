@@ -7,12 +7,12 @@
   "homepage": "http://mb.cloud.nifty.com/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NIFTYCloud-mbaas/monaca_push_plugin" 
+    "url": "git+https://github.com/NIFTYCloud-mbaas/monaca_push_plugin"
   },
   "maintainers": [
     {
       "name": "Nifty Cloud mobile backend Team",
-      "url": "http://mb.cloud.nifty.com/support.htm" 
+      "url": "http://mb.cloud.nifty.com/support.htm"
     }
   ],
   "tags": [
@@ -24,6 +24,6 @@
     "tool",
     "push",
     "notification",
-    "cordova" 
-  ],
-} 
+    "cordova"
+  ]
+}
