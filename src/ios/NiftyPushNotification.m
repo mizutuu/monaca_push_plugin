@@ -273,21 +273,21 @@ static BOOL hasSetup = NO;
 -(void)updateExistInstallation:(NCMBInstallation*)currentInstallation{
     NCMBQuery *installationQuery = [NCMBInstallation query];
     [installationQuery whereKey:@"deviceToken" equalTo:currentInstallation.deviceToken];
-    NSError *searchErr = nil;
-    NCMBInstallation *searchDevice = [installationQuery getFirstObject:&searchErr];
-    
-    if (!searchErr){
-        currentInstallation.objectId = searchDevice.objectId;
-        [currentInstallation saveInBackgroundWithBlock:^(NSError *error) {
-            if (!error) {
-                [self callSetDeviceTokenSuccessOnUiThread];
-            } else {
-                [self callSetDeviceTokenErrorOnUiThreadWith:error.code message:kNiftyPushErrorMessageFailedToSave];
-            }
-        }];
-    } else {
-        [self callSetDeviceTokenErrorOnUiThreadWith:searchErr.code message:kNiftyPushErrorMessageNoDeviceToken];
-    }
+    [installationQuery getFirstObjectInBackgroundWithBlock:^(NCMBObject *searchDevice, NSError *searchErr) {
+        if (!searchErr){
+            currentInstallation.objectId = searchDevice.objectId;
+            [currentInstallation saveInBackgroundWithBlock:^(NSError *error) {
+                if (!error) {
+                    [self callSetDeviceTokenSuccessOnUiThread];
+                } else {
+                    [self callSetDeviceTokenErrorOnUiThreadWith:error.code message:kNiftyPushErrorMessageFailedToSave];
+                }
+            }];
+        } else {
+            [self callSetDeviceTokenErrorOnUiThreadWith:searchErr.code message:kNiftyPushErrorMessageNoDeviceToken];
+        }
+    } ];
+
 }
 
 #pragma mark - Get InstalationId
