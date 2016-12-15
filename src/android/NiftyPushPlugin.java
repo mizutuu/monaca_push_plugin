@@ -138,11 +138,15 @@ public class NiftyPushPlugin extends CordovaPlugin
             return;
         }
 
+        JSONObject json = null;
         if (data.hasJson()) {
-            PluginResult result = new PluginResult(PluginResult.Status.OK, new JSONObject(data.getJson()));
-            result.setKeepCallback(true);
-            mPushReceivedCallbackContext.sendPluginResult(result);
+            json = new JSONObject(data.getJson());
+        } else {
+            json = new JSONObject();
         }
+        PluginResult result = new PluginResult(PluginResult.Status.OK, json);
+        result.setKeepCallback(true);
+        mPushReceivedCallbackContext.sendPluginResult(result);
 
         // Use dummy intent to call trackAppOpened and richPushHandler.
         Intent dummyIntent = data.createIntent();
