@@ -2,23 +2,23 @@
 <!--
   NiftyMB Cloud for Push Notificaction Plugin
   Copyright 2016 NIFTY Corporation. All Rights Reserved.
-  
+
   GooglePlayServices library
   Copyright (c) 2013 The Chromium Authors. All rights reserved.
 -->
 <plugin
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="plugin.push.nifty"
-    version="2.0.2">
+    version="2.0.3">
 
     <name>NiftyMB</name>
     <description>NiftyMB Cloud for Push Notification Plugin</description>
     <license>Copyright 2014 NIFTY Corporation. All Rights Reserved.</license>
-    
+
     <engines>
         <engine name="cordova" version=">=3.0.0" />
     </engines>
-    
+
     <js-module src="www/nifty.js" name="NiftyCloud">
         <clobbers target="NCMB.monaca" />
         <runs/>
@@ -187,4 +187,3 @@
         <framework src="CoreLocation.framework" />
     </platform>
 </plugin>
-
